@@ -63,13 +63,26 @@ while(1)
         
     if(manzana == led_base)
     {
-        
-
-        
+        led_base += 1;
+        snake[frente] = 1;
+        frente++;
         *led_base = 0xFFD700;
         score ++;
+        int mamanzana = 0;
+        int contador = 135;
+        
+        while(mamanzana != 1){
+            manzana += contador;
+            if (manzana == 0xFFD700){
+                contador ++;
+            }else if(manzana == 0xFA8072){
+                contador ++;
+            }else{
+                *manzana = 0x008000;
+                mamanzana =1;
+            }
+        }
     }
-
     if(*d_pad_up == 1)
     {
         led_base -= LED_MATRIX_0_WIDTH;
@@ -80,7 +93,6 @@ while(1)
         cola++;
         f++;
     }
-
     if(*d_pad_do == 1)
     {
         led_base += LED_MATRIX_0_WIDTH;
@@ -91,7 +103,6 @@ while(1)
         cola++;
         f++;
     }
-
     if(*d_pad_le == 1)
     {
         led_base -= 1;
@@ -101,7 +112,6 @@ while(1)
         cola++;
         f++;
     }
-    
     if(*d_pad_ri == 1)
     {
         led_base += 1;
@@ -111,7 +121,6 @@ while(1)
         cola++;
         f++;
     }
-    
     if((*led_base == 0xFFD700) && (f == 1))
         break;
     else if((*led_base == 0xFA8072) && (f == 1))
